@@ -6,13 +6,15 @@ import android.os.Parcelable
 class Item(
     var name: String,
     var description: String,
-    var quantity: Int,
+    var unitQuantity: Int,
+    var currQuantity: Int,
     var required: Int,
     var lowStockAlarm: Int,
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt()
@@ -22,7 +24,8 @@ class Item(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(description)
-        parcel.writeInt(quantity)
+        parcel.writeInt(unitQuantity)
+        parcel.writeInt(currQuantity)
         parcel.writeInt(required)
         parcel.writeInt(lowStockAlarm)
     }

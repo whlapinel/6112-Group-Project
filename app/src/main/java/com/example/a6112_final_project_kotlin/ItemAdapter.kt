@@ -37,7 +37,7 @@ class ItemAdapter (
         val item = items[position]
         holder.textViewName.text = item.name
         holder.textViewDescription.text = item.description
-        holder.textViewQty.text = item.quantity.toString()
+        holder.textViewQty.text = item.currQuantity.toString()
         holder.updateQtyBtn.setOnClickListener {
             itemClickListener(item)
         }

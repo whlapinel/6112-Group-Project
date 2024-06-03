@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,8 +23,9 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class ItemListFragment : Fragment() {
+    private val viewModel: ItemViewModel by activityViewModels()
+
     private final val TAG: String = "ItemListFragment:"
-    private lateinit var viewModel: ItemViewModel
     private lateinit var itemAdapter: ItemAdapter
     private lateinit var recyclerView: RecyclerView
 
@@ -54,7 +56,6 @@ class ItemListFragment : Fragment() {
             findNavController().navigate(action)
         }
         recyclerView.adapter = itemAdapter
-        viewModel = ViewModelProvider(this)[ItemViewModel::class.java]
         viewModel.items.observe(viewLifecycleOwner) { items ->
             itemAdapter.updateItems(items)
         }
