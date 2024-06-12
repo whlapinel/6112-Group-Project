@@ -6,11 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.example.a6112_final_project_kotlin.databinding.FragmentItemFormBinding
 
@@ -52,7 +48,8 @@ class EditItemFragment : Fragment() {
 
         val itemNameEditText = binding.editTextItemName
         val itemDescEditText = binding.editTextItemDesc
-        val unitQuantityEditText = binding.editTextUnitQuantity
+        val itemCategoryEditText = binding.editTextItemCategory
+
         val currQuantityEditText = binding.editTextCurrQty
         val lowStockEditText = binding.editTextLowStock
         val requiredEditText = binding.editTextRequired
@@ -61,9 +58,9 @@ class EditItemFragment : Fragment() {
 
         itemNameEditText.setText(item?.name)
         itemDescEditText.setText(item?.description)
-        unitQuantityEditText.setText(item?.unitQuantity.toString())
+        itemCategoryEditText.setText(item?.category)
         currQuantityEditText.setText(item?.currQuantity.toString())
-        lowStockEditText.setText(item?.lowStockAlarm.toString())
+        lowStockEditText.setText(item?.lowStock.toString())
         requiredEditText.setText(item?.required.toString())
 
         fun goBackToItemList() {
@@ -74,9 +71,9 @@ class EditItemFragment : Fragment() {
         submitButton.setOnClickListener {
             item?.name = itemNameEditText.text.toString()
             item?.description = itemDescEditText.text.toString()
-            item?.unitQuantity = unitQuantityEditText.text.toString().toInt()
+            item?.category = itemCategoryEditText.text.toString()
             item?.currQuantity = currQuantityEditText.text.toString().toInt()
-            item?.lowStockAlarm = lowStockEditText.text.toString().toInt()
+            item?.lowStock = lowStockEditText.text.toString().toInt()
             item?.required = requiredEditText.text.toString().toInt()
             viewModel.updateItem(item!!)
             goBackToItemList()

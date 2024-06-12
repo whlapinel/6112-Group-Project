@@ -8,6 +8,10 @@ class ItemViewModel : ViewModel() {
     private val _items = MutableLiveData<List<Item>>()
     val items: LiveData<List<Item>> get() = _items
 
+    private val _lowStockPriceSum = MutableLiveData<Int>(0) // Start with 0
+    val lowStockPriceSum: LiveData<Int> get() = _lowStockPriceSum
+
+
     fun updateItem(item: Item) {
         val items = _items.value.orEmpty().toMutableList() // Handle null case safely
         val index = items.indexOf(item)
@@ -16,6 +20,10 @@ class ItemViewModel : ViewModel() {
             items.add(item)
             _items.value = items
         }
+
+        _lowStockPriceSum.value = _items.value.orEmpty()  // Use orEmpty for safety
+            .filter { it.currQuantity <= it.lowStock }
+            .sumOf { it.price }
     }
 
     init {
@@ -23,34 +31,38 @@ class ItemViewModel : ViewModel() {
             Item(
                 "Item 1",
                 "Description 1",
-                2,
+                "kitchen",
                 1,
                 10,
                 5,
+                800,
             ),
             Item(
                 "Item 2",
                 "Description 2",
-                2,
+                "living room",
                 2,
                 10,
                 5,
+                700,
             ),
             Item(
                 "Item 3",
                 "Description 3",
-                2,
+                "bedroom",
                 3,
                 10,
                 5,
+                600,
             ),
             Item(
                 "Item 4",
                 "Description 4",
-                2,
+                "bathroom",
                 4,
                 10,
                 5,
+                500,
             )
         )
     }

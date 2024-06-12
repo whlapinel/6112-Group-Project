@@ -28,10 +28,31 @@
         android:layout_weight="1"
         android:text="Item Quantity" />
 
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Item Category" />
+
+    <TextView
+        android:id="@+id/textViewPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="Item Price" />
+
+    <Button
+        android:id="@+id/viewDetailsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="View Details" />
+
     <Button
         android:id="@+id/editItemBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="Edit Item" />
+        android:text="Edit" />
 </LinearLayout>

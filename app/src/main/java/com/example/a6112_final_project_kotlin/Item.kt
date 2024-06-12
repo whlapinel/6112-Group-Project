@@ -6,28 +6,31 @@ import android.os.Parcelable
 class Item(
     var name: String,
     var description: String,
-    var unitQuantity: Int,
+    var category: String,
     var currQuantity: Int,
     var required: Int,
-    var lowStockAlarm: Int,
+    var lowStock: Int,
+    var price: Int // in cents
 ): Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString().toString(),
         parcel.readString().toString(),
+        parcel.readString().toString(),
         parcel.readInt(),
         parcel.readInt(),
         parcel.readInt(),
-        parcel.readInt()
+        parcel.readInt(),
     ) {
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(name)
         parcel.writeString(description)
-        parcel.writeInt(unitQuantity)
+        parcel.writeString(category)
         parcel.writeInt(currQuantity)
         parcel.writeInt(required)
-        parcel.writeInt(lowStockAlarm)
+        parcel.writeInt(lowStock)
+        parcel.writeInt(price)
     }
 
     override fun describeContents(): Int {
