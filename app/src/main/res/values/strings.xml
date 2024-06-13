@@ -15,4 +15,6 @@
     <string name="submit">Submit</string>
     <string name="price">Price</string>
     <string name="add_item">Add Item</string>
+    <string name="item_quantity">Item Quantity</string>
+    <string name="item_name">Item Name</string>
 </resources>

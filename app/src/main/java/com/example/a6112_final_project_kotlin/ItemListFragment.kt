@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.NavAction
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.a6112_final_project_kotlin.databinding.FragmentItemListBinding
@@ -47,7 +48,7 @@ class ItemListFragment : Fragment() {
         val root = binding.root
 
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = LinearLayoutManager(activity)
+        recyclerView.layoutManager = GridLayoutManager(activity, 4)
         itemAdapter = ItemAdapter() { item ->
             Log.d(TAG, "Item clicked: ${item.name}")
             val action = ItemListFragmentDirections.actionItemListFragmentToEditItemFragment(item)
