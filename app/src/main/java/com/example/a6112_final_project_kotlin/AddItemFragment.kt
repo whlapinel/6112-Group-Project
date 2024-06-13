@@ -77,8 +77,8 @@ class AddItemFragment : Fragment() {
                 Toast.makeText(context, "Please fill out all fields", Toast.LENGTH_SHORT).show()
 
                 return@setOnClickListener
-
             }
+            item = Item("", "", "", 0, 0, 0, 0)
 
             item?.name = itemNameEditText.text.toString()
             item?.description = itemDescEditText.text.toString()
@@ -87,7 +87,7 @@ class AddItemFragment : Fragment() {
             item?.lowStock = lowStockEditText.text.toString().toInt()
             item?.required = requiredEditText.text.toString().toInt()
             item?.price = dollarsToCents(priceEditText.text.toString())
-            viewModel.updateItem(item!!)
+            viewModel.addItem(item!!)
             goBackToItemList()
         }
 
