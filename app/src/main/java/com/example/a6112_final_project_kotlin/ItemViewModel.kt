@@ -26,6 +26,28 @@ class ItemViewModel : ViewModel() {
             .sumOf { it.price }
     }
 
+    fun deleteItem(item: Item) {
+        val items = _items.value.orEmpty().toMutableList() // Handle null case safely
+        items.remove(item)
+        _items.value = items
+    }
+
+    fun addItem(item: Item) {
+        val items = _items.value.orEmpty().toMutableList() // Handle null case safely
+        items.add(item)
+        _items.value = items
+    }
+
+    fun getAllCategories(): List<String> {
+        val items = _items.value.orEmpty() // Handle null case safely
+        return items.map { it.category }.distinct()
+    }
+
+    fun getItemsByCategory(category: String): List<Item> {
+        val items = _items.value.orEmpty() // Handle null case safely
+        return items.filter { it.category == category }
+    }
+
     init {
         _items.value = listOf(
             Item(

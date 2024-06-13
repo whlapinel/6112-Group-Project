@@ -9,11 +9,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.a6112_final_project_kotlin.databinding.ItemRowBinding
 
 class ItemAdapter (
-    private var items : List<Item>,
     private val itemClickListener: (Item) -> Unit
 ): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
     // view binding
     private lateinit var binding: ItemRowBinding
+    private var items = emptyList<Item>()
 
 
 
@@ -21,9 +21,9 @@ class ItemAdapter (
         // view binding
         val binding = ItemRowBinding.bind(itemView)
         val textViewName = binding.textViewName
-        val textViewDescription = binding.textViewDescription
         val textViewQty = binding.textViewQty
-        val editBtn = binding.editItemBtn
+        val textViewCategory = binding.textViewCategory
+        val textViewPrice = binding.textViewPrice
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -43,10 +43,9 @@ class ItemAdapter (
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.textViewName.text = item.name
-        holder.textViewDescription.text = item.description
         holder.textViewQty.text = item.currQuantity.toString()
-        holder.editBtn.setOnClickListener {
-            itemClickListener(item)
-        }
+        holder.textViewCategory.text = item.category
+        holder.textViewPrice.text = item.price.toString()
+        holder.itemView.setOnClickListener { itemClickListener(item) }
     }
 }
