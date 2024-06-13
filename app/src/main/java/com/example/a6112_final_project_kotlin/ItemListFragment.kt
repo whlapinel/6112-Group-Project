@@ -48,7 +48,7 @@ class ItemListFragment : Fragment() {
         val root = binding.root
 
         recyclerView = binding.recyclerView
-        recyclerView.layoutManager = GridLayoutManager(activity, 4)
+        recyclerView.layoutManager = LinearLayoutManager(activity)
         itemAdapter = ItemAdapter() { item ->
             Log.d(TAG, "Item clicked: ${item.name}")
             val action = ItemListFragmentDirections.actionItemListFragmentToEditItemFragment(item)
