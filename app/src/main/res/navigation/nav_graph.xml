@@ -19,17 +19,41 @@
                 app:argType="com.example.a6112_final_project_kotlin.Item" />
 
         </action>
+        <action
+            android:id="@+id/action_ItemListFragment_to_AddItemFragment"
+            app:destination="@id/AddItemFragment">
+            <argument
+                android:name="category"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/AddItemFragment"
+        android:name="com.example.a6112_final_project_kotlin.AddItemFragment"
+        tools:layout="@layout/fragment_add_item">
+        <action
+            android:id="@+id/action_AddItemFragment_to_ItemListFragment"
+            app:destination="@id/ItemListFragment">
+
+            <argument
+                android:name="category"
+                app:argType="string" />
+        </action>
+
     </fragment>
 
 
     <fragment
         android:id="@+id/EditItemFragment"
         android:name="com.example.a6112_final_project_kotlin.EditItemFragment"
-        tools:layout="@layout/fragment_item_form">
+        tools:layout="@layout/fragment_edit_item">
 
         <action
             android:id="@+id/action_EditItemFragment_to_ItemListFragment"
             app:destination="@id/ItemListFragment">
+            <argument
+                android:name="category"
+                app:argType="string" />
 
         </action>
     </fragment>

@@ -20,22 +20,30 @@ class ItemViewModel : ViewModel() {
             items.add(item)
             _items.value = items
         }
+        updateLowStockPriceSum()
 
+    }
+
+    private fun updateLowStockPriceSum(){
         _lowStockPriceSum.value = _items.value.orEmpty()  // Use orEmpty for safety
             .filter { it.currQuantity <= it.lowStock }
             .sumOf { it.price }
+
     }
 
     fun deleteItem(item: Item) {
         val items = _items.value.orEmpty().toMutableList() // Handle null case safely
         items.remove(item)
         _items.value = items
+        updateLowStockPriceSum()
     }
 
     fun addItem(item: Item) {
         val items = _items.value.orEmpty().toMutableList() // Handle null case safely
         items.add(item)
         _items.value = items
+        updateLowStockPriceSum()
+
     }
 
     fun getAllCategories(): List<String> {

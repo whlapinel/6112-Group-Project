@@ -2,4 +2,17 @@
     <string name="app_name">6112_final_project_kotlin</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">Name</string>
+    <string name="description">Description</string>
+    <string name="category">Category</string>
+    <string name="item_category">Item Category</string>
+    <string name="current_qty">Current Qty</string>
+    <string name="current_quantity">Current Quantity</string>
+    <string name="low_stock_alarm">Low Stock Alarm</string>
+    <string name="required_qty">Required Qty</string>
+    <string name="required_quantity">Required Quantity</string>
+    <string name="cancel">Cancel</string>
+    <string name="submit">Submit</string>
+    <string name="price">Price</string>
+    <string name="add_item">Add Item</string>
 </resources>

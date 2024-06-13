@@ -34,8 +34,10 @@ class ItemListFragment : Fragment() {
 
     // TODO: Rename and change types of parameters
     private var category: String? = null
+    private lateinit var addButton: View
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d(TAG, "onCreate: ")
         super.onCreate(savedInstanceState)
         arguments?.let {
             category = it.getString(CATEGORY)
@@ -46,6 +48,7 @@ class ItemListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d(TAG, "onCreateView: $category")
         _binding = FragmentItemListBinding.inflate(inflater, container, false)
         val root = binding.root
 
@@ -60,9 +63,15 @@ class ItemListFragment : Fragment() {
         }
         recyclerView.adapter = itemAdapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
+            Log.d(TAG, "items: ${items.get(0).category}")
             items.filter { it.category == category }.let { filteredItems ->
                 itemAdapter.updateItems(filteredItems)
             }
+        }
+        addButton = binding.addButton
+        addButton.setOnClickListener {
+            val action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(category!!)
+            findNavController().navigate(action)
         }
         return root
     }

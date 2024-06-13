@@ -40,12 +40,15 @@ class ItemAdapter (
         notifyDataSetChanged()
     }
 
+
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         holder.textViewName.text = item.name
         holder.textViewQty.text = item.currQuantity.toString()
         holder.textViewCategory.text = item.category
-        holder.textViewPrice.text = item.price.toString()
+        val dollars = centsToDollars(item.price)
+        holder.textViewPrice.text = dollars
         holder.itemView.setOnClickListener { itemClickListener(item) }
     }
 }
