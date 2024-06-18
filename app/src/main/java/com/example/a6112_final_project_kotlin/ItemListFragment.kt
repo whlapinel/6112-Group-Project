@@ -40,8 +40,7 @@ class ItemListFragment : Fragment() {
     }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         Log.d(TAG, "onCreateView: $category")
         _binding = FragmentItemListBinding.inflate(inflater, container, false)
@@ -56,7 +55,9 @@ class ItemListFragment : Fragment() {
         }
         recyclerView.adapter = itemAdapter
         viewModel.items.observe(viewLifecycleOwner) { items ->
-            Log.d(TAG, "items: ${items.get(0).category}")
+            if (!items.isNullOrEmpty()) {
+                Log.d(TAG, "items: ${items[0].category}")
+            }
             if (category.isNullOrEmpty()) {
                 itemAdapter.updateItems(items)
             } else {
@@ -72,7 +73,8 @@ class ItemListFragment : Fragment() {
             if (category.isNullOrEmpty()) {
                 action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment("")
             } else {
-                action = ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(category!!)
+                action =
+                    ItemListFragmentDirections.actionItemListFragmentToAddItemFragment(category!!)
             }
             findNavController().navigate(action)
         }
@@ -86,11 +88,10 @@ class ItemListFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(category: String) =
-            ItemListFragment().apply {
-                arguments = Bundle().apply {
-                    putString(CATEGORY, category)
-                }
+        fun newInstance(category: String) = ItemListFragment().apply {
+            arguments = Bundle().apply {
+                putString(CATEGORY, category)
             }
+        }
     }
 }

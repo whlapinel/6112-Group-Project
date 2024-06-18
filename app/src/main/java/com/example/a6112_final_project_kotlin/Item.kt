@@ -2,17 +2,31 @@ package com.example.a6112_final_project_kotlin
 
 import android.os.Parcel
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 
+@Entity(tableName = "items")
 class Item(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
+    @ColumnInfo(name = "name")
     var name: String,
+    @ColumnInfo(name = "description")
     var description: String,
+    @ColumnInfo(name = "category")
     var category: String,
+    @ColumnInfo(name = "currQuantity")
     var currQuantity: Int,
+    @ColumnInfo(name = "required")
     var required: Int,
+    @ColumnInfo(name = "lowStock")
     var lowStock: Int,
+    @ColumnInfo(name = "price")
     var price: Int // in cents
 ): Parcelable {
     constructor(parcel: Parcel) : this(
+        parcel.readInt(),
         parcel.readString().toString(),
         parcel.readString().toString(),
         parcel.readString().toString(),
@@ -25,6 +39,7 @@ class Item(
 
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
         parcel.writeString(name)
         parcel.writeString(description)
         parcel.writeString(category)

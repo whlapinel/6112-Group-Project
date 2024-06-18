@@ -78,7 +78,7 @@ class AddItemFragment : Fragment() {
 
                 return@setOnClickListener
             }
-            item = Item("", "", "", 0, 0, 0, 0)
+            item = Item(0, "", "", "", 0, 0, 0, 0)
 
             item?.name = itemNameEditText.text.toString()
             item?.description = itemDescEditText.text.toString()
